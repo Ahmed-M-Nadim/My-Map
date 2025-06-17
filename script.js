@@ -38,3 +38,17 @@ const inputElevation = document.querySelector('.form__input--elevation');
 //     }
 //   );
 // }
+if (navigator.geolocation) {
+  navigator.geolocation.getCurrentPosition(
+    function (position) {
+      const latitude = position.coords.latitude;
+      const longitude = position.coords.longitude;
+      console.log(`https://www.google.com/maps/@${latitude},${longitude}`);
+    },
+    function () {
+      alert(
+        `My Name is Your Assistance, but 🙄 I can't Know right now your Location`
+      );
+    }
+  );
+}
