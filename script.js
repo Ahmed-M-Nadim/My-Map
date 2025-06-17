@@ -40,10 +40,27 @@ if (navigator.geolocation) {
           '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
       }).addTo(map);
 
-      L.marker([latitude, longitude])
-        .addTo(map)
-        .bindPopup('A pretty CSS popup.<br> Easily customizable.')
-        .openPopup();
+      // console.log(map);
+
+      map.on('click', function (mapEvent) {
+        console.log(map);
+        console.log(mapEvent);
+        const { lat, lng } = mapEvent.latlng;
+        console.log(lat, lng);
+
+        L.marker([lat, lng])
+          .addTo(map)
+          .bindPopup(
+            L.popup({
+              maxWidth: 300,
+              minWidth: 100,
+              autoClose: false,
+              closeOnClick: false,
+              className: 'running-popup',
+            })
+          )
+          .openPopup();
+      });
     },
     function () {
       alert(
