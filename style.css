@@ -49,6 +49,7 @@ a:visited {
   display: flex;
   flex-direction: column;
   border-radius: 10px 0 0 10px;
+  box-shadow: 15px 12px 10px 1px rgba(148, 148, 148, 0.781);
 }
 
 .logo {
@@ -197,6 +198,7 @@ a:visited {
   height: 100%;
   background-color: var(--color-light--1);
   border-radius: 0 10px 10px 0;
+  box-shadow: 10px 12px 10px 1px rgba(148, 148, 148, 0.781);
 }
 
 /* Popup width is defined in JS using options */

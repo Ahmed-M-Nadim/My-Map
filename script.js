@@ -26,28 +26,28 @@ const inputElevation = document.querySelector('.form__input--elevation');
 ////////////////////////////////////////////////////////////////////////////////
 
 //========= Use Geolocation =========//
-// if (navigator.geolocation) {
-//   navigator.geolocation.getCurrentPosition(
-//     function (position) {
-//       const latitude = position.coords.latitude;
-//       const longitude = position.coords.longitude;
-//       console.log(`https://www.google.com/maps/@${latitude},${longitude}`);
-//     },
-//     function () {
-//       alert`I'm Your Servant, 😥But I can't Get Your Location`;
-//     }
-//   );
-// }
 if (navigator.geolocation) {
   navigator.geolocation.getCurrentPosition(
     function (position) {
       const latitude = position.coords.latitude;
       const longitude = position.coords.longitude;
       console.log(`https://www.google.com/maps/@${latitude},${longitude}`);
+
+      const map = L.map('map').setView([latitude, longitude], 13);
+
+      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution:
+          '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      }).addTo(map);
+
+      L.marker([latitude, longitude])
+        .addTo(map)
+        .bindPopup('A pretty CSS popup.<br> Easily customizable.')
+        .openPopup();
     },
     function () {
       alert(
-        `My Name is Your Assistance, but 🙄 I can't Know right now your Location`
+        `My Name is Your-Assistance, but 🙄 I can't get your Location right now`
       );
     }
   );
