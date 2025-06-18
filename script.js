@@ -22,6 +22,8 @@ const inputDistance = document.querySelector('.form__input--distance');
 const inputDuration = document.querySelector('.form__input--duration');
 const inputCadence = document.querySelector('.form__input--cadence');
 const inputElevation = document.querySelector('.form__input--elevation');
+let map;
+let mapEvent;
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -33,7 +35,7 @@ if (navigator.geolocation) {
       const longitude = position.coords.longitude;
       console.log(`https://www.google.com/maps/@${latitude},${longitude}`);
 
-      const map = L.map('map').setView([latitude, longitude], 13);
+      map = L.map('map').setView([latitude, longitude], 13);
 
       L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution:
@@ -42,8 +44,9 @@ if (navigator.geolocation) {
 
       // console.log(map);
 
-      map.on('click', function (mapEvent) {
+      map.on('click', function (mapE) {
         form.classList.remove('hidden');
+        mapEvent = mapE;
       });
     },
     function () {
@@ -54,9 +57,10 @@ if (navigator.geolocation) {
   );
 }
 
-form.addEventListener('submit', function () {
+form.addEventListener('submit', function (e) {
   // console.log(map);
   // console.log(mapEvent);
+  e.preventDefault();
   const { lat, lng } = mapEvent.latlng;
   console.log(lat, lng);
   L.marker([lat, lng])
