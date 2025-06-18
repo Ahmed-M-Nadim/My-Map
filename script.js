@@ -61,6 +61,11 @@ form.addEventListener('submit', function (e) {
   // console.log(map);
   // console.log(mapEvent);
   e.preventDefault();
+  inputDistance.value =
+    inputDuration.value =
+    inputCadence.value =
+    inputElevation.value =
+      '';
   const { lat, lng } = mapEvent.latlng;
   console.log(lat, lng);
   L.marker([lat, lng])
@@ -76,4 +81,9 @@ form.addEventListener('submit', function (e) {
     )
     .setPopupContent(`Ahmed Mahmoud <br> Workout`)
     .openPopup();
+});
+
+inputType.addEventListener('change', function () {
+  inputCadence.closest('.form__row').classList.toggle('form__row--hidden');
+  inputElevation.closest('.form__row').classList.toggle('form__row--hidden');
 });
