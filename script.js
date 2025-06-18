@@ -43,28 +43,7 @@ if (navigator.geolocation) {
       // console.log(map);
 
       map.on('click', function (mapEvent) {
-        console.log(map);
-        console.log(mapEvent);
-        const { lat, lng } = mapEvent.latlng;
-        console.log(lat, lng);
         form.classList.remove('hidden');
-        if ((inputType.value = 'running')) {
-          console.log(`run`);
-        }
-
-        // L.marker([lat, lng])
-        //   .addTo(map)
-        //   .bindPopup(
-        //     L.popup({
-        //       maxWidth: 300,
-        //       minWidth: 100,
-        //       autoClose: false,
-        //       closeOnClick: false,
-        //       className: 'running-popup',
-        //     })
-        //   )
-        //   .setPopupContent(`Ahmed Mahmoud <br> Workout`)
-        //   .openPopup();
       });
     },
     function () {
@@ -74,3 +53,23 @@ if (navigator.geolocation) {
     }
   );
 }
+
+form.addEventListener('submit', function () {
+  // console.log(map);
+  // console.log(mapEvent);
+  const { lat, lng } = mapEvent.latlng;
+  console.log(lat, lng);
+  L.marker([lat, lng])
+    .addTo(map)
+    .bindPopup(
+      L.popup({
+        maxWidth: 300,
+        minWidth: 100,
+        autoClose: false,
+        closeOnClick: false,
+        className: 'running-popup',
+      })
+    )
+    .setPopupContent(`Ahmed Mahmoud <br> Workout`)
+    .openPopup();
+});
